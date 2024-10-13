@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
+import { PageInfo } from '@/types/anime'
+
 type PaginationProps = {
   pageLink: string
-  pageInfo: {
-    currentPage: number
-    hasNextPage: number
-  }
+  pageInfo: PageInfo
 }
+
 export function Pagination({ pageLink, pageInfo }: PaginationProps) {
   /**
    * The total and lastPage fields are not currently accurate. You should only rely on hasNextPage for any pagination logic.

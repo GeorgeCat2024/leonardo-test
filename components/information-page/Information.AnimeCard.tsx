@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import { Card, CardBody, Heading, Stack } from '@chakra-ui/react'
+import { Anime } from '@/types/anime'
 
 type AnimeCardProps = {
-  anime: any
+  anime: Anime
   onClick: () => void
 }
 
 export function AnimeCard({ anime, onClick }: AnimeCardProps) {
   return (
-    <Card maxW="md" onClick={onClick} className="cursor-pointer">
+    <Card onClick={onClick} className="cursor-pointer">
       <CardBody>
         <Stack spacing={4}>
           <Image

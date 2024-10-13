@@ -9,9 +9,10 @@ import {
   ModalOverlay,
   Stack,
 } from '@chakra-ui/react'
+import { Anime } from '@/types/anime'
 
 type InformationModalProps = {
-  anime: any
+  anime?: Anime
   open: boolean
   onclose: () => void
 }
@@ -26,19 +27,20 @@ export function InformationModal({
   return (
     <Modal isOpen={open} onClose={onclose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent margin={4}>
         <ModalHeader>{anime.title.userPreferred}</ModalHeader>
         <ModalBody>
           <Stack gap={6}>
             <Stack direction="row">
               <Text as="b">Score:</Text>
               <Text as="b" color="tomato">
-                {anime.averageScore} / 100
+                {anime.averageScore ? `${anime.averageScore}/100` : 'unknown'}
               </Text>
             </Stack>
             <Stack>
               <Text as="b">Description:</Text>
-              <Text>{anime.description}</Text>
+              {/* // trust on source data, otherwise use better way handle description that includes html tag */}
+              <Text dangerouslySetInnerHTML={{ __html: anime.description }} />
             </Stack>
             <Stack direction="column" gap={2}>
               <Text as="b">Genres:</Text>
