@@ -6,12 +6,20 @@ import { Pagination } from '@/components/information-page/Information.Pagination
 import { AnimeCardsGrid } from '@/components/information-page/Information.AnimeCardsGrid'
 import { Section } from '@/components/Common/Section'
 import { AnimesQueryReturn } from '@/types/anime'
+import { auth } from '@/lib/auth'
+import { redirect } from 'next/navigation'
 
 export default async function InformationPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | number }
 }) {
+  const session = await auth()
+
+  if (!session?.user) {
+    redirect('/')
+  }
+
   const apolloClient = createApolloClient('https://graphql.anilist.co')
 
   const {

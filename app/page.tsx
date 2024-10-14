@@ -1,29 +1,14 @@
-import Link from "next/link";
+import { redirect } from 'next/navigation'
 
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-} from '@chakra-ui/react'
+import { SignInForm } from '@/components/sign-in/SignIn.Form'
+import { auth } from '@/lib/auth'
 
-export default function Home() {
-  return (
-    <div className="max-w-[500px] m-auto py-24">
-      <FormControl className="flex flex-col gap-4">
-        <div>
-          <FormLabel>Username</FormLabel>
-          <Input type='text' />
-        </div>
-        <div>
-          <FormLabel>Job Title</FormLabel>
-          <Input type='text' />
-        </div>
-      </FormControl>
-      
-      
-      <Link href='/information'>Goto information </Link>
-    </div>
-  );
+export default async function Home() {
+  const session = await auth()
+
+  if (session?.user) {
+    redirect('/account')
+  }
+
+  return <SignInForm />
 }

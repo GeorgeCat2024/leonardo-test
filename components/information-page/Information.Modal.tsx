@@ -47,6 +47,7 @@ export function InformationModal({
               <Stack direction="row" gap={2} wrap="wrap">
                 {anime.genres.map((genre) => (
                   <Button
+                    key={genre}
                     id={genre}
                     colorScheme="orange"
                     borderRadius="50vw"
