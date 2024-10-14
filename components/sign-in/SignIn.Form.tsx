@@ -23,11 +23,11 @@ export function SignInForm() {
               <form className="flex flex-col gap-4" action={logIn}>
                 <div>
                   <FormLabel>Username</FormLabel>
-                  <Input type="text" name="userName" />
+                  <Input type="text" name="userName" required />
                 </div>
                 <div>
                   <FormLabel>Job Title</FormLabel>
-                  <Input type="text" name="jobTitle" />
+                  <Input type="text" name="jobTitle" required />
                 </div>
                 <Button colorScheme="green" type="submit">
                   Sign In
